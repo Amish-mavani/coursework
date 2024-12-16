@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 Transformations, Transitions, Animations, and Resize</title>
+    <style>
+        .box-2d {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            transform: rotate(45deg) scale(1.5);
+            margin: 20px;
+        }
+
+        .box-3d {
+            width: 100px;
+            height: 100px;
+            background-color: #2ecc71;
+            transform: perspective(600px) rotateX(45deg) rotateY(45deg) scale(1.5);
+            margin: 20px;
+        }
+
+        .transition-box {
+            width: 100px;
+            height: 100px;
+            background-color: #e74c3c;
+            transition: all 0.5s ease-in-out;
+            margin: 20px;
+        }
+
+        .transition-box:hover {
+            transform: scale(1.5) rotate(45deg);
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(200px); }
+            100% { transform: translateX(0); }
+        }
+
+        .animation-box {
+            width: 100px;
+            height: 100px;
+            background-color: #f39c12;
+            animation: slide 3s infinite;
+            margin: 20px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+
+        .bounce-box {
+            width: 100px;
+            height: 100px;
+            background-color: #9b59b6;
+            animation: bounce 2s infinite;
+            margin: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .spin-box {
+            width: 100px;
+            height: 100px;
+            background-color: #27ae60;
+            animation: spin 2s linear infinite;
+            margin: 20px;
+        }
+
+        @keyframes colorChange {
+            0% { background-color: #3498db; }
+            50% { background-color: #e74c3c; }
+            100% { background-color: #3498db; }
+        }
+
+        .color-change-box {
+            width: 100px;
+            height: 100px;
+            animation: colorChange 3s infinite;
+            margin: 20px;
+        }
+        .resize-box {
+            width: 100px;
+            height: 100px;
+            background-color: #9b59b6;
+            resize: both;
+            overflow: auto;
+            margin: 20px;
+        }
+        .wrapper{
+            width: 90vw;
+            height: 90vh;
+        }
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20rem;
+            margin-left: 20rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="box-2d"></div>
+        <div class="box-3d"></div>
+        <div class="transition-box"></div>
+        <div class="animation-box"></div>
+        <div class="bounce-box"></div>
+        <div class="spin-box"></div>
+        <div class="color-change-box"></div>
+        <div class="resize-box">
+            <p>This box can be resized.</p>
+        </div>
+        </div>
+        
+    </div>
+</body>
+</html>

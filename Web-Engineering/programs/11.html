@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="11.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <p id="heading">Good Vibes Form</p>
+        <div class="container">
+            <div id="sub-heading">Tell us something positive thet happened to you today</div>
+            <form action="/action_page.php" style="display: flex; flex-direction:column;justify-content:center; align-items:center;">
+                <div style="display: flex;">
+                    <label for="fname" style="margin-right: 1rem; text-align:center">Name </label>
+                    <input type="text" id="fname" name="fname" placeholder="Enter your name"><br>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <label for="fname" style="margin-right: .85rem;">Email </label>
+                    <input type="email" id="fname" name="fname" placeholder="Enter your mail address"><br>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <label for="fname" style="margin-left:-11.5rem; margin-right:1rem">On scale of 1-10 how good was at</label>
+                    <input type="text" id="fname" name="fname" placeholder="Enter your number between 1 - 10"><br>
+                </div>
+                <div style="display: flex; margin-top:1.5rem;">
+                    <div style="margin-left: -15.5rem;"> <label>At what time of day it happen</label><br></div>
+                    <div style="margin-left: 1rem;">
+                    <input type="radio" id="html" name="fav_language" value="HTML">
+                    <label for="html">Morning</label><br>
+                    <input type="radio" id="css" name="fav_language" value="CSS">
+                    <label for="css">Afternoon</label><br>
+                    <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+                    <label for="javascript">Evening</label>
+                    </div>
+                   
+                    
+                </div>
+                <div style="display: flex; margin-top:1.5rem">
+                    <div style="margin-left: -18rem;"><label>What experience do you experience?</label></div>
+                    <div style="margin-left: 1rem;">
+                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                    <label for="vehicle1"> Excited</label><br>
+                    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                    <label for="vehicle2"> Humbled</label><br>
+                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                    <label for="vehicle3"> Elated</label><br>
+                    <input type="checkbox" id="vehicle4" name="vehicle4" value="Boat">
+                    <label for="vehicle3"> Loved</label><br>
+                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                    <label for="vehicle3"> Enthusiatic</label>
+                    </div>
+                    
+                    
+                </div>
+                <div style="display: flex; margin-top:1.5rem; margin-bottom:1.5rem">
+                    <div> <label for="w3review">Please describe your positive experience</label>
+                    </div>
+                    <div style="margin-left: 1rem;">
+                        <textarea id="w3review" name="w3review" rows="4" cols="50">
+
+                        </textarea>
+                    </div>
+                </div>
+
+                <input type="submit" value="Submit" class="submit">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
