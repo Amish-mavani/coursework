@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery Effects Demonstration</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        button {
+            margin: 10px 0;
+        }
+
+        .image-container {
+            width: 300px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        
+        .image-container img:first-child {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Toggle Visibility with Duration</h2>
+    <button id="toggleVisibilityBtn">Toggle Paragraph Visibility</button>
+    <p id="toggleParagraph">This paragraph can be toggled with a button click!</p>
+
+
+    <h2>Sliding and Fading Elements</h2>
+    <button id="slideUpBtn">Slide Up</button>
+    <button id="slideDownBtn">Slide Down</button>
+    <button id="slideToggleBtn">Slide Toggle</button>
+    <button id="fadeInBtn">Fade In</button>
+    <button id="fadeOutBtn">Fade Out</button>
+    <button id="fadeToHalfBtn">Fade To 0.5</button>
+    <div id="slideFadeDiv" style="width: 200px; height: 20px; background-color: rgb(5, 88, 255); margin-top: 2px;">This box can slide and fade</div>
+
+    <h2>Show Images on Hover</h2>
+    <div class="image-container">
+        <img src="./image.jpeg" alt="Image 1" class="carousel-image">
+        <img src="./image2.jpg" alt="Image 2" class="carousel-image" style="display: none;">
+        <img src="./image3.jpeg" alt="Image 3" class="carousel-image" style="display: none;">
+        <img src="./image4.jpg" alt="Image 3" class="carousel-image" style="display: none;">
+        <img src="./image5.jpg" alt="Image 3" class="carousel-image" style="display: none;">
+    </div>
+
+    <script>
+        $(document).ready(function () {
+           
+            $('#toggleVisibilityBtn').click(function () {
+                $('#toggleParagraph').toggle(1000); 
+            });
+
+
+            $('#slideUpBtn').click(function () {
+                $('#slideFadeDiv').slideUp(1000); 
+            });
+
+            $('#slideDownBtn').click(function () {
+                $('#slideFadeDiv').slideDown(1000); 
+            });
+
+            $('#slideToggleBtn').click(function () {
+                $('#slideFadeDiv').slideToggle(1000); 
+            });
+
+            // Fade functions
+            $('#fadeInBtn').click(function () {
+                $('#slideFadeDiv').fadeIn(1000); 
+            });
+
+            $('#fadeOutBtn').click(function () {
+                $('#slideFadeDiv').fadeOut(1000); 
+            });
+
+            $('#fadeToHalfBtn').click(function () {
+                $('#slideFadeDiv').fadeTo(1000, 0.5); 
+            });
+            
+            const images = $('.carousel-image');
+            let currentIndex = 0;
+            const totalImages = images.length;
+
+
+            function changeImage() {
+        
+                const currentImage = images.eq(currentIndex);
+                
+                currentIndex = (currentIndex + 1) % totalImages;
+                
+                const nextImage = images.eq(currentIndex);
+                
+                currentImage.fadeOut(1000, function() {
+                    nextImage.fadeIn(1000);
+                });
+            }
+
+            $('.image-container').hover(changeImage);
+        });
+    </script>
+</body>
+
+</html>

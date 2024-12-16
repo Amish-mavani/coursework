@@ -4,13 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="6.css">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="box">
-            
-        </div>
+    <div>
+        <form name="form" method="get" id="form" action="output.html">
+        <br><h4> text :  </h4>
+        <input type="text" name="text" id="text" value="asdf"><br><br>
+        <button onclick="Cipher()">value</button>
+    </form>
     </div>
+    <script>
+        text = document.getElementsByName('text').value;
+        document.write(text);
+
+        var ar1 = ['a', 'b', 'c', 'd','e', 'f', 'g', 'h','i', 'j', 'k', 'l','m', 'n', 'o', 'p', 'q','r', 's', 't', 'u','v', 'w', 'x', 'y', 'z'];
+        printarray(ar1);
+        shuffle(ar1);
+        printarray(ar1);
+        
+        function printarray(ar1){
+            document.write("<br>Array : " + ar1);
+        }
+
+        function shuffle(array) {
+            let currentIndex = array.length,  
+            randomIndex;
+            while (currentIndex > 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        function Cipher(){
+            text = document.getElementsByName('text').value;
+            var ar1 = ['a', 'b', 'c', 'd','e', 'f', 'g', 'h','i', 'j', 'k', 'l','m', 'n', 'o', 'p', 'q','r', 's', 't', 'u','v', 'w', 'x', 'y', 'z'];
+            var ar2 = shuffle(ar1);
+            for( var i=0;i<26;i++){
+                let result = text.replace( ar1[i], ar2[i]);
+            }
+            return document.write(result);
+
+        }
+
+    </script>
 </body>
 </html>
+
+
+    

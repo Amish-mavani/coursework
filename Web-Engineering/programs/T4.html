@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contextual Menu</title>
+<style>
+    .menu {
+        list-style: none; 
+        padding: 0;
+        margin: 0;
+    }
+    .menu li {
+        padding: 10px;
+        background-color: #f0f0f0;
+        cursor: pointer;
+    }
+    .menu li:hover {
+        background-color: #ccc;
+    }
+    .menu li.highlighted {
+        background-color: rgb(23, 199, 248);
+    }
+    #info {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<h2>Contextual Menu</h2>
+
+<ul class="menu">
+    <li data-info="Information about Books">Books</li>
+    <li data-info="Information about Web Development">Web Development</li>
+    <li data-info="Information about Programming">Programming</li>
+    <li data-info="Information about RDBMS">RDBMS</li>
+</ul>
+
+<div id="info"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.menu li').hover(function() {
+            $(this).addClass('highlighted');
+            var info = $(this).data('info');
+            $('#info').text(info);
+        }, function() {
+            $(this).removeClass('highlighted');
+            
+            $('#info').text('');
+        });
+    });
+</script>
+
+</body>
+</html>

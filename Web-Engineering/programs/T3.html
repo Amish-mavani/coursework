@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery Form Effects</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .checkbox-container {
+            margin-bottom: 10px;
+        }
+
+        .serial-number-input {
+            width: 40px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>jQuery Form Effects</h1>
+
+    <h2>Select/Deselect All Checkboxes</h2>
+    <p>
+        <a href="#" id="toggleCheckboxes">Select/Deselect All Checkboxes</a>
+    </p>
+    <div class="checkbox-container">
+        <label><input type="checkbox" class="checkbox-item">  1 </label><br>
+        <label><input type="checkbox" class="checkbox-item">  2 </label><br>
+        <label><input type="checkbox" class="checkbox-item">  3 </label><br>
+        <label><input type="checkbox" class="checkbox-item">  4 </label><br>
+        <label><input type="checkbox" class="checkbox-item">  5 </label><br>
+    </div>
+
+    <h2>Auto Tabbing Based on Character Count</h2>
+    <p>Enter 16-digit serial number:</p>
+    <div>
+        <input type="text" class="serial-number-input" maxlength="4">
+        <input type="text" class="serial-number-input" maxlength="4">
+        <input type="text" class="serial-number-input" maxlength="4">
+        <input type="text" class="serial-number-input" maxlength="4">
+    </div>
+
+    <script>
+        $(document).ready(function () {
+        
+            $('#toggleCheckboxes').click(function (e) {
+                e.preventDefault(); 
+                const checkboxes = $('.checkbox-item');
+                const allChecked = checkboxes.filter(':checked').length === checkboxes.length;
+
+                checkboxes.prop('checked', !allChecked);
+            });
+
+            $('.serial-number-input').on('input', function() {
+                const maxLength = $(this).attr('maxlength');
+                
+                if ($(this).val().length >= maxLength) {
+                    const nextInput = $(this).next('.serial-number-input');
+                    
+                    if (nextInput.length) {
+                        nextInput.focus();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

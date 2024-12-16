@@ -1,0 +1,211 @@
+<style>
+    fieldset{
+        margin: 2px;
+    };
+
+</style>
+
+<fieldset>
+    <h1>Arithmetic Operations</h1>
+<form id="myForm">
+    <label for="num1">Enter the first number:</label>
+<input type="number" id="num1" name="num1"><br><br>
+<label for="num2">Enter the second number:</label>
+<input type="number" id="num2" name="num2"><br><br>
+<button type="button" onclick="calculate()">Calculate</button>
+</form>
+<div id="results"></div>
+<script>
+function calculate() {
+let num1 = parseFloat(document.getElementById('num1').value);
+let num2 = parseFloat(document.getElementById('num2').value);
+let addition = num1 + num2;
+let subtraction = num1 - num2;
+let multiplication = num1 * num2;
+let division = num1 / num2;
+if(num2 == 0){
+document.getElementById('results').innerHTML = "<p>Result of Addition: " + addition + "</p>" +
+"<p>Result of Subtraction: " + subtraction + "</p>" +
+"<p>Result of Multiplication: " + multiplication + "</p>" +
+"<p>Division not possible becasue you entered 0 in number 2"+ "</p>";
+}else{
+document.getElementById('results').innerHTML = "<p>Result of Addition: " + addition + "</p>" +
+"<p>Result of Subtraction: " + subtraction + "</p>" +
+"<p>Result of Multiplication: " + multiplication + "</p>" +
+"<p>Result of Division: " + division + "</p>";
+}
+}
+</script>
+</fieldset>
+
+<fieldset>
+    <h1>“Guessing Game”</h1>
+    <p>guess a number between 1 to 10.</p>
+    <p>what it is?</p>
+    <form>
+    <label for="guess">My Guess</label>
+    <input type="number" id="guess">
+    <input type="button" id="submitGuess" value="Check My Guess">
+    </form>
+    <p id="feedback"></p>
+    <script>
+    const randomNumber = Math.floor(Math.random() * 10) + 1;
+    let remainingTries = 5;
+    function timeout(sec){
+    setTimeout(() => {
+    location.reload();
+    }, sec*1000);
+    }
+    function checkGuess() {
+    let userGuess = Number(document.getElementById('guess').value);
+    let feedback = document.getElementById('feedback');
+    if (userGuess === randomNumber) {
+    feedback.textContent = "You got it right!";
+    timeout(5);
+    } else {
+    remainingTries--;
+    if (remainingTries === 0) {
+    feedback.textContent = `Sorry, you've run out of tries. The number was ${randomNumber}.`;
+    timeout(1);
+    } else if (userGuess > randomNumber) {
+    feedback.textContent = `Your guess was too high. ${remainingTries} tries left. Try Again!`;
+    } else {
+    feedback.textContent = `Your guess was too low. ${remainingTries} tries left. Try Again!`;
+    }
+    }
+    }
+    const submitGuess = document.getElementById("submitGuess");
+    submitGuess.addEventListener("click", checkGuess);
+    </script>
+
+</fieldset>
+
+<fieldset>
+    <h1>Binary Search</h1>
+    <p>Write the number you want to find in the list using Binary Search</p>
+    <p>2, 4, 6, 7, 8, 9, 10, 11, 20, 21, 25, 28, 29, 30, 31, 32, 33</p>
+    <form>
+    <label for="bsearch">Enter Number</label>
+    <input type="number" id="bsearch">
+    <input type="button" id="submitbsearch" value="Search">
+    </form>
+    <p id="BSResult"></p>
+    <script>
+    const list = [2, 4, 6, 7, 8, 9, 10, 11, 20, 21, 25, 28, 29, 30, 31, 32, 33];
+    const submitButton = document.getElementById("submitbsearch");
+    submitButton.addEventListener("click", () => checkBinarySearch(list));
+    function printArrayWithMid(list, mid, numSearch, j) {
+    let result = "Array: ";
+    for (let i = 0; i < j; i++) {
+    if (i === mid) {
+    result += `|[${list[i]}]| `;
+    } else if (list[i] === numSearch) {
+    result += `${list[i]}* `;
+    } else {
+    result += `${list[i]} `;
+    }
+    }
+    return result;
+    }
+    function checkBinarySearch(list) {
+    let numSearch = parseInt(document.getElementById("bsearch").value);
+    let i = 0;
+    let j = list.length - 1;
+    let iterations = "";
+    while (i <= j) {
+    let mid = Math.floor((i + j) / 2);
+    iterations += printArrayWithMid(list, mid, numSearch, j) + "<br>";
+    if (list[mid] === numSearch) {
+    iterations += `Found Element in List at index ${mid}`;
+    document.getElementById("BSResult").innerHTML = iterations;
+    return;
+    } else if (list[mid] < numSearch) {
+    i = mid + 1;
+    } else {
+    j = mid - 1;
+    }
+    }
+    iterations += "Element not found in the list.";
+    document.getElementById("BSResult").innerHTML = iterations;
+    }
+    </script>
+
+</fieldset>
+
+<fieldset>
+    <h1>Substitution Cipher</h1>
+    <label for="inputText">Enter text to encode:</label>
+    <input type="text" id="inputText">
+    <button onclick="encodeText()">Encode</button>
+    <p id="output"></p>
+    <script>
+    function generateKey() {
+    let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    let shuffledAlphabet = alphabet.split('').sort(() => 0.5 - Math.random()).join('');
+    return shuffledAlphabet;
+    }
+    function encodeText() {
+    let inputText = document.getElementById('inputText').value.toLowerCase();
+    let key = generateKey();
+    let encodedText = '';
+    for (let i = 0; i < inputText.length; i++) {
+    let char = inputText[i];
+    if (char.match(/[a-z]/i)) {
+    let charIndex = char.charCodeAt(0) - 97;
+    encodedText += key[charIndex];
+    } else {
+    encodedText += char;
+    }
+    }
+    document.getElementById('output').innerText = `Encoded Text: ${encodedText}`;
+    }
+    </script>
+</fieldset>
+
+<fieldset>
+    <h1>Collapse and Expand Content</h1>
+    <div id="content">
+        <p>1. Write a JavaScript program to ask user to input two values through prompt. Perform the
+        arithmetic operations addition, subtraction, multiplication, and division on input numbers and
+        display the results on webpage (on predefined paragraphs or div, etc...).</p>
+        <p>2. Implement “Guessing Game” which will have the following functionality:
+        <p>    a. Program generates a random number at the start of each game</p>
+        <p>b. User's goal is to guess the correct number</p>
+        <p>c. User gets a set # of tries (default = 5)</p>
+        <p>d. Program tracks user's guesses and prevents duplicate guessing</p>
+        <p>e. Game ends when user guesses correctly or runs out of tries</p>
+        <p>    3. Implement Binary Search using JavaScript. Output image is given below.</p>
+        <p>    4. Implement Substitution Cipher as per the given output. Each letter is encoded using
+        corresponding</p>
+        <p>    letter in the key. Each time key should be generating randomly.</p>
+        <p>    5. Write a JavaScript to Collapse and Expand the content by clicking on the Button as per the
+        following output image.</p>
+        <p>    6. Write a JavaScript to Create the Mouse-Over effect. Build the webpage with one image. When
+        user put the mouse over the image, the original image should change to a new image. When
+        mouse left from the image, again the original image should appear.
+        </p>
+    </div>
+    <button id="expandBtn" onclick="expandContent()">Expand</button>
+    <button id="collapseBtn" style="display: none;" onclick="collapseContent()">Collapse</button>
+    <script > function expandContent() {
+    document.getElementById('content').style.display = 'block';
+    document.getElementById('expandBtn').style.display = 'none';
+    document.getElementById('collapseBtn').style.display = 'block';
+    }
+    function collapseContent() {
+    document.getElementById('content').style.display = 'none';
+    document.getElementById('expandBtn').style.display = 'block';
+    document.getElementById('collapseBtn').style.display = 'none';
+    }</script>
+
+</fieldset>
+
+<fieldset>
+    <h1>Mouse-Over Image Effect</h1>
+    <img id="image" src="image.jpeg" onmouseover="changeImage('Image2.jpg')"
+    onmouseout="changeImage('image.jpeg')"style="width: 300px; height= 150px">
+    <script>function changeImage(newSrc) {
+    document.getElementById('image').src = newSrc;
+    }
+    </script>
+</fieldset>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Balloon Effect</title>
+<style>
+    /* Speech bubble style */
+    .speech-bubble {
+        position: absolute;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: none;
+            font-size: 14px;
+            max-width: 150px; 
+    }
+    /* Speech bubble pointer */
+    .speech-bubble:after {
+        content: '';
+        position: absolute;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            display: none;
+            font-size: 14px;
+            max-width: 150px;   
+    }
+
+    .button {
+        margin: 10px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .button::after {
+        margin: 10px;
+        padding: 5px 10px;
+        color: red;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<h2>Word Balloon Effect</h2>
+
+<button class="button" id="boldBtn">Bold</button>
+<button class="button" id="italicBtn">Italic</button>
+
+<div class="speech-bubble" id="boldBubble">This is a bold menu</div>
+<div class="speech-bubble" id="italicBubble">This is an italic menu</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#boldBtn').click(function() {
+            $('#boldBubble').toggle();
+            $('#italicBubble').hide(); 
+        });
+
+        $('#italicBtn').click(function() {
+            $('#italicBubble').toggle();
+            $('#boldBubble').hide(); 
+        });
+    });
+</script>
+
+</body>
+</html>

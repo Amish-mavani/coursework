@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserting some data</title>
+<body>
+<form action="" method="post" id="form">
+    <h1>-- Guessing Game --</h1>
+    <h4> guess the correct number :  </h4> 
+    <input type="number" name="num" id="num"/>  <button type="submit" onclick="check();">enter number</button><br>
+</form>
+<p id="output"></p>
+
+<script>
+var count = 0;
+var z = Math.floor(Math.random() * 11);
+
+function addnum(){
+    document.write(" Congratulations");
+    var guess = document.getElementById("num").value;
+    const form = document.getElementById("form");
+}
+function check(){
+    while (count < 5)
+    {
+        var count = count + 1;
+        guess = document.getElementById("num").value;
+        if (z == guess){
+            document.write(" Congratulations you did it in  " + count + " try <br/>");
+            break
+        } else {
+            if (z > guess){
+                document.write(" You guessed too small! <br/>");
+            }else{
+                document.write(" You guessed too high! <br/>");
+            }
+        }
+    }
+    if (count >= 5){
+        document.write(" <br/> The number is " + z + "<br/>");
+        document.write(" Better Luck Next time!");
+    }
+
+}
+
+
+function addtext(){
+    var val = document.getElementById("num").value;
+    var l = document.getElementById("output");
+    var text = document.createTextNode(val);
+    l.appendChild(text);
+}
+           
+
+</script>
+</body>

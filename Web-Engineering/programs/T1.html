@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Array Manipulation with jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .input-section,
+        .output-section {
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input-section">
+        <h3>Input Arrays</h3>
+        <div>
+            <label for="array1">Array 1 :</label>
+            <input type="text" id="array1" >
+        </div>
+        <div>
+            <label for="array2">Array 2 :</label>
+            <input type="text" id="array2" >
+        </div>
+        <button id="combineArraysBtn">Combine Arrays</button>
+        <button id="findDuplicatesBtn">Find Duplicates</button>
+        <button id="changeElementBtn">Change Element in Array 1</button>
+    </div>
+
+    <div class="output-section">
+        <h3>Output</h3>
+        <p id="output"></p>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+        
+            function getArrays() {
+                const array1 = $('#array1').val().split(',').map(Number);
+                const array2 = $('#array2').val().split(',').map(Number);
+                return { array1, array2 };
+            }
+
+            $('#changeElementBtn').click(function () {
+                const { array1 } = getArrays();
+                const elementToChange = parseInt(prompt(`Enter the element in Array 1 you want to change (current array1: ${array1.join(', ')}):`));
+                if (!array1.includes(elementToChange)) {
+                    alert('Element not found in Array 1.');
+                    return;
+                }
+
+                const newValue = parseInt(prompt(`Enter the new value for element ${elementToChange}:`));
+                const index = array1.indexOf(elementToChange);
+                array1[index] = newValue;
+                
+                $('#array1').val(array1.join(', '));
+                $('#output').text(`Modified Array 1: ${array1.join(', ')}`);
+            });
+
+            
+            $('#combineArraysBtn').click(function () {
+                const { array1, array2 } = getArrays();
+                const combinedArray = $.merge([], array1);
+                $.merge(combinedArray, array2);
+                
+                $('#output').text(`Combined Array: ${combinedArray.join(', ')}`);
+            });
+
+            $('#findDuplicatesBtn').click(function () {
+                const { array1, array2 } = getArrays();
+                
+                const combinedArray = array1.concat(array2);
+                combinedArray.sort();
+
+                let duplicates = [];
+                for (let i = 0; i < combinedArray.length - 1; i++) {
+                    if (combinedArray[i] === combinedArray[i + 1]) {
+                    
+                        if (!duplicates.includes(combinedArray[i])) {
+                            duplicates.push(combinedArray[i]);
+                        }
+                    }
+                }
+                
+                if (duplicates.length > 0) {
+                    $('#output').text(`Duplicate entries from both arrays: ${duplicates.join(', ')}`);
+                } else {
+                    $('#output').text(`No duplicate entries found in combined arrays.`);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
